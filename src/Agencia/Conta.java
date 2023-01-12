@@ -74,6 +74,8 @@ public class Conta {
 			
 			 contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
 			System.out.println("Transferencia realizada com sucesso!");
+		}else {
+			System.out.println("Não foi possivel realizar a transferencia!");
 		}
 	}
 
