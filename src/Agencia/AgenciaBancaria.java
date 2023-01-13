@@ -76,7 +76,34 @@ public class AgenciaBancaria {
 		operacoes();
 	}
 	
-	public static void depositar() {}
+    private static Conta encontrarConta(int numeroConta) {
+        Conta conta = null;
+        if(contasBancarias.size() > 0) {
+            for(Conta contaa : contasBancarias) {
+                if(contaa.getNumeroConta() == numeroConta) {
+                    conta = contaa;
+                }
+            }
+        }
+        return conta;
+    }
+	
+	public static void depositar() {
+		System.out.println("Numero da conta: ");
+
+		int numeroConta = entrada.nextInt();
+		Conta conta = encontrarConta(numeroConta);
+		
+		if(conta != null) {
+			System.out.println("Qual é o valor do deposito ?");
+			Double valorDeposito = entrada.nextDouble();
+			conta.depositar(valorDeposito);
+			System.out.println("Valor depositado com Sucesso!");
+		}else {
+			System.out.println("A conta Não foi encontrada!");
+		}
+		operacoes();
+	}
 	public static void sacar() {}
 	public static void transferir() {}
 	public static void listas() {}
