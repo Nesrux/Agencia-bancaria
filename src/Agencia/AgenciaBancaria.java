@@ -56,14 +56,14 @@ public class AgenciaBancaria {
 	}
 	
 	public static void criarConta(){
-		System.out.println("\nNome: ");
-		String nome = entrada.nextLine();
+		System.out.print("\nNome: ");
+		String nome = entrada.next();
 		
-		System.out.println("\nCPF: ");
-		String cpf = entrada.nextLine();
+		System.out.print("\nCPF: ");
+		String cpf = entrada.next();
 		
-		System.out.println("\nEmail: ");
-		String email = entrada.nextLine();
+		System.out.print("\nEmail: ");
+		String email = entrada.next();
 		
 		
 		Cliente cliente = new Cliente(nome, cpf, email);
@@ -104,7 +104,25 @@ public class AgenciaBancaria {
 		}
 		operacoes();
 	}
-	public static void sacar() {}
+	
+	public static void sacar() {
+		System.out.println("Numero da conta: ");
+		int numeroConta = entrada.nextInt();
+		
+		Conta conta = encontrarConta(numeroConta);
+		
+		if(conta != null) {
+			System.out.println("Qual é o valor do saque ?");
+			Double valorSaque = entrada.nextDouble();
+			conta.sacar(valorSaque);
+			System.out.println("Valor Sacado com sucesso! ");
+		}else {
+			System.out.println("A conta Não foi encontrada! ");
+		}
+		operacoes();
+	}
+	
+	
 	public static void transferir() {}
 	public static void listas() {}
 	
