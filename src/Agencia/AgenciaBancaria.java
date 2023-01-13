@@ -25,10 +25,10 @@ public class AgenciaBancaria {
 		System.out.println("|   Opção 4 - Transferir    |");
 		System.out.println("|   Opção 5 - Listar        |");
 		System.out.println("|   Opção 6 - Sair          |");
-		
+
 		int operacao = entrada.nextInt();
-		switch(operacao) {
-		case 1 :
+		switch (operacao) {
+		case 1:
 			criarConta();
 			break;
 		case 2:
@@ -50,91 +50,87 @@ public class AgenciaBancaria {
 			System.out.println("Opção Inválida!");
 			operacoes();
 		}
-		
-		
 
 	}
-	
-	public static void criarConta(){
+
+	public static void criarConta() {
 		System.out.print("\nNome: ");
 		String nome = entrada.next();
-		
+
 		System.out.print("\nCPF: ");
 		String cpf = entrada.next();
-		
+
 		System.out.print("\nEmail: ");
 		String email = entrada.next();
-		
-		
+
 		Cliente cliente = new Cliente(nome, cpf, email);
-		
+
 		Conta conta = new Conta(cliente);
-		
+
 		contasBancarias.add(conta);
 		System.out.println("Sua conta foi criada com sucesso!");
-		
+
 		operacoes();
 	}
-	
-    private static Conta encontrarConta(int numeroConta) {
-        Conta conta = null;
-        if(contasBancarias.size() > 0) {
-            for(Conta contaa : contasBancarias) {
-                if(contaa.getNumeroConta() == numeroConta) {
-                    conta = contaa;
-                }
-            }
-        }
-        return conta;
-    }
-	
+
+	private static Conta encontrarConta(int numeroConta) {
+		Conta conta = null;
+		if (contasBancarias.size() > 0) {
+			for (Conta contaa : contasBancarias) {
+				if (contaa.getNumeroConta() == numeroConta) {
+					conta = contaa;
+				}
+			}
+		}
+		return conta;
+	}
+
 	public static void depositar() {
 		System.out.println("Numero da conta: ");
 
 		int numeroConta = entrada.nextInt();
 		Conta conta = encontrarConta(numeroConta);
-		
-		if(conta != null) {
+
+		if (conta != null) {
 			System.out.println("Qual é o valor do deposito ?");
 			Double valorDeposito = entrada.nextDouble();
 			conta.depositar(valorDeposito);
 			System.out.println("Valor depositado com Sucesso!");
-		}else {
+		} else {
 			System.out.println("A conta Não foi encontrada!");
 		}
 		operacoes();
 	}
-	
+
 	public static void sacar() {
 		System.out.println("Numero da conta: ");
 		int numeroConta = entrada.nextInt();
-		
+
 		Conta conta = encontrarConta(numeroConta);
-		
-		if(conta != null) {
+
+		if (conta != null) {
 			System.out.println("Qual é o valor do saque ?");
 			Double valorSaque = entrada.nextDouble();
 			conta.sacar(valorSaque);
 			System.out.println("Valor Sacado com sucesso! ");
-		}else {
+		} else {
 			System.out.println("A conta Não foi encontrada! ");
 		}
 		operacoes();
 	}
-	
-	
+
 	public static void transferir() {
 		System.out.println("Numero da conta do remetente: ");
 		int numeroContaRemetente = entrada.nextInt();
-		
+
 		Conta contaRemetente = encontrarConta(numeroContaRemetente);
-		
-		if(contaRemetente !=null) {
+
+		if (contaRemetente != null) {
 			System.out.println("Número da conta do destinatário: ");
 			int numeroContaDestinatario = entrada.nextInt();
-			
+
 			Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
-			if(contaDestinatario != null) {
+			if (contaDestinatario != null) {
 				System.out.println("valor da transferencia: ");
 				Double valor = entrada.nextDouble();
 				contaRemetente.trnasferir(contaDestinatario, valor);
@@ -142,8 +138,17 @@ public class AgenciaBancaria {
 		}
 		operacoes();
 	}
-	
-	
-	public static void listas() {}
-	
+
+	public static void listas() {
+		if (contasBancarias.size() > 0) {
+			for (Conta c : contasBancarias) {
+				System.out.println(c);
+			}
+		} else {
+			System.out.println("não existe contas disponiveis");
+		}
+		operacoes();
+	}
+
+
 }
