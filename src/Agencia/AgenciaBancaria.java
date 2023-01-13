@@ -123,7 +123,27 @@ public class AgenciaBancaria {
 	}
 	
 	
-	public static void transferir() {}
+	public static void transferir() {
+		System.out.println("Numero da conta do remetente: ");
+		int numeroContaRemetente = entrada.nextInt();
+		
+		Conta contaRemetente = encontrarConta(numeroContaRemetente);
+		
+		if(contaRemetente !=null) {
+			System.out.println("Número da conta do destinatário: ");
+			int numeroContaDestinatario = entrada.nextInt();
+			
+			Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
+			if(contaDestinatario != null) {
+				System.out.println("valor da transferencia: ");
+				Double valor = entrada.nextDouble();
+				contaRemetente.trnasferir(contaDestinatario, valor);
+			}
+		}
+		operacoes();
+	}
+	
+	
 	public static void listas() {}
 	
 }
