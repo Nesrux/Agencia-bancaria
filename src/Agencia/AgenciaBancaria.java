@@ -88,43 +88,38 @@ public class AgenciaBancaria {
 	}
 
 	public static void sacar() {
-		System.out.println("Numero da conta: ");
-		int numeroConta = entrada.nextInt();
+		int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Numero da conta: "));
 
 		Conta conta = encontrarConta(numeroConta);
 
 		if (conta != null) {
-			System.out.println("Qual é o valor do saque ?");
-			Double valorSaque = entrada.nextDouble();
+			Double valorSaque = Double.parseDouble(JOptionPane.showInputDialog("Valor do saque: "));
 			conta.sacar(valorSaque);
 			// System.out.println("Valor Sacado com sucesso! ");
 		} else {
-			System.out.println("A conta Não foi encontrada! ");
+			JOptionPane.showMessageDialog(null, "Sua conta não foi encontrada!");
 		}
 		operacoes();
 	}
 
 	public static void transferir() {
-		System.out.println("Numero da conta do remetente: ");
-		int numeroContaRemetente = entrada.nextInt();
+		int numeroContaRemetente = Integer.parseInt(JOptionPane.showInputDialog("Numero da conta do remetente: "));
 
 		Conta contaRemetente = encontrarConta(numeroContaRemetente);
 
 		if (contaRemetente != null) {
-			System.out.println("Número da conta do destinatário: ");
-			int numeroContaDestinatario = entrada.nextInt();
+			int numeroContaDestinatario = Integer.parseInt(JOptionPane.showInputDialog("Numero da conta do destinatario: "));
 
 			Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
 
 			if (contaDestinatario != null) {
-				System.out.println("valor da transferencia: ");
-				Double valor = entrada.nextDouble();
+				Double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor da transferencia: "));
 				contaRemetente.trnasferir(contaDestinatario, valor);
 			} else {
-				System.out.println("A conta para deposito não foi encontrada");
+				JOptionPane.showMessageDialog(null, "Sua conta para deposito não foi encontrada!");
 			}
 		} else {
-			System.out.println("Conta para transferencia não encontrada! ");
+			JOptionPane.showMessageDialog(null, "Sua conta para transferencia não foi encontrada!");
 		}
 		operacoes();
 	}
@@ -135,7 +130,7 @@ public class AgenciaBancaria {
 				System.out.println(c);
 			}
 		} else {
-			System.out.println("não existe contas disponiveis");
+			JOptionPane.showMessageDialog(null, "Não existem contas disponiveis");
 		}
 		operacoes();
 	}
