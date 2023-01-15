@@ -18,8 +18,8 @@ public class AgenciaBancaria {
 
 		int operacao = Integer.parseInt(JOptionPane.showInputDialog("---Selecione uma operação---\n" +
 
-				"|   Opção 1 - Criar conta   |" + "|   Opção 2 - Depositar     |" + "|   Opção 3 - Sacar         |"
-				+ "|   Opção 4 - Transferir    |" + "|   Opção 5 - Listar        |" + "|   Opção 6 - Sair          |"));
+				"|   Opção 1 - Criar conta\n" + "|   Opção 2 - Depositar\n" + "|   Opção 3 - Sacar\n"
+				+ "|   Opção 4 - Transferir\n" + "|   Opção 5 - Listar\n" + "|   Opção 6 - Sair"));
 
 		switch (operacao) {
 		case 1:
@@ -126,7 +126,7 @@ public class AgenciaBancaria {
 	public static void listas() {
 		if (contasBancarias.size() > 0) {
 			for (Conta c : contasBancarias) {
-				System.out.println(c);
+				JOptionPane.showMessageDialog(null, c);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Não existem contas disponiveis");
