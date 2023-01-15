@@ -16,18 +16,12 @@ public class AgenciaBancaria {
 	}
 
 	public static void operacoes() {
-		
-		int operacao = Integer.parseInt(JOptionPane.showInputDialog("---Selecione uma operação---\n"+
-		
-				"|   Opção 1 - Criar conta   |" +
-				"|   Opção 2 - Depositar     |"+
-				"|   Opção 3 - Sacar         |"+
-				"|   Opção 4 - Transferir    |"+
-				"|   Opção 5 - Listar        |"+
-				"|   Opção 6 - Sair          |"));
-	
-		
-		
+
+		int operacao = Integer.parseInt(JOptionPane.showInputDialog("---Selecione uma operação---\n" +
+
+				"|   Opção 1 - Criar conta   |" + "|   Opção 2 - Depositar     |" + "|   Opção 3 - Sacar         |"
+				+ "|   Opção 4 - Transferir    |" + "|   Opção 5 - Listar        |" + "|   Opção 6 - Sair          |"));
+
 		switch (operacao) {
 		case 1:
 			criarConta();
@@ -48,29 +42,22 @@ public class AgenciaBancaria {
 			JOptionPane.showMessageDialog(null, "Obrigado por usar nossa agencia");
 			System.exit(0);
 		default:
-			JOptionPane.showMessageDialog(null,"Opção Inválida!");
+			JOptionPane.showMessageDialog(null, "Opção Inválida!");
 			operacoes();
 		}
 
 	}
 
 	public static void criarConta() {
-		System.out.print("\nNome: ");
-		String nome = entrada.next();
-
-		System.out.print("\nCPF: ");
-		String cpf = entrada.next();
-
-		System.out.print("\nEmail: ");
-		String email = entrada.next();
-
-		Cliente cliente = new Cliente(nome, cpf, email);
+		Cliente cliente = new Cliente();
+		cliente.setNome(JOptionPane.showInputDialog("Nome: "));
+		cliente.setCpf(JOptionPane.showInputDialog("CPF: "));
+		cliente.setEmail(JOptionPane.showInputDialog("Email: "));
 
 		Conta conta = new Conta(cliente);
 
 		contasBancarias.add(conta);
-		System.out.println("Sua conta foi criada com sucesso!");
-
+		JOptionPane.showMessageDialog(null, "Sua conta foi criada com sucesso!");
 		operacoes();
 	}
 
@@ -87,18 +74,15 @@ public class AgenciaBancaria {
 	}
 
 	public static void depositar() {
-		System.out.println("Numero da conta: ");
-
-		int numeroConta = entrada.nextInt();
+		int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Numero Da conta para deposito: "));
 		Conta conta = encontrarConta(numeroConta);
 
 		if (conta != null) {
-			System.out.println("Qual é o valor do deposito ?");
-			Double valorDeposito = entrada.nextDouble();
+			Double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Qual é o valor que deseja depositar?"));
 			conta.depositar(valorDeposito);
-			System.out.println("Valor depositado com Sucesso!");
+			JOptionPane.showMessageDialog(null, "Valor depositado com sucesso");
 		} else {
-			System.out.println("A conta Não foi encontrada!");
+			JOptionPane.showMessageDialog(null, "Sua conta não foi encontrada!");
 		}
 		operacoes();
 	}
